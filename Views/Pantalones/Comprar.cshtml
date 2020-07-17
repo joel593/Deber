@@ -1,0 +1,44 @@
+﻿@model IEnumerable<VintageStuff.Models.Pantalon>
+
+@{
+    ViewData["Title"] = "Comprar";
+}
+
+<h1>Compre sus pantalones preferidos</h1>
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FotoBase64)
+            </th>
+            <th>Comando</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var articulo in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(x => articulo.Marca)<!--Aquí van los datos de la marca-->
+            </td>
+            <td>
+                @Html.DisplayFor(x => articulo.Modelo)<!--Aquí van los datos del modelo-->
+            </td>
+            <td>
+                <img src="@articulo.FotoBase64" alt="Fotografía no encontrada" />
+            </td>
+            <td>
+                <form asp-action="Comprar/@articulo.Id">
+                    <input type="submit" value="Comprar" class="btn btn-primary" />
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
